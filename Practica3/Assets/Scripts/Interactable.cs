@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    bool isInsideZone = false;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Interact()
     {
-        
+        Debug.Log("Interactuando");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(isInsideZone && Input.GetKeyDown(KeyCode.I))
+        {
+            Interact();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -22,6 +25,15 @@ public class Interactable : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Entro en rango: "+ other.gameObject.name);
+        isInsideZone = true;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(!other.CompareTag("Player"))
+        {
+            return;
+        }
+        isInsideZone = false;
     }
 }
