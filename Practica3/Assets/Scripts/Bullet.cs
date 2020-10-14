@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Bullet : Interactable
 {
+    protected GameObject bullet;
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("Recogiendo bala");
+        Debug.Log("Bullet Pickup");
+        bullet.SetActive(false);
+        DisableInteract();
     }
 }

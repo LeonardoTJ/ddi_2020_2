@@ -6,6 +6,13 @@ public class FirstAid : Interactable
 {
     Rigidbody rb;
     public float torque;
+    GameObject kit;
+
+    protected override void Start()
+    {
+        base.Start();
+        kit = GameObject.Find("FirstAidKit_Red");
+    }
 
     void Awake()
     {
@@ -20,6 +27,14 @@ public class FirstAid : Interactable
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("Recogiendo salud");
+        Debug.Log("Health item interaction");
+        kit.SetActive(false);
+        DisableInteract();
+    }
+
+    protected override void EnableInteract()
+    {
+        base.EnableInteract();
+        MessageText[0].text = "Health Item";
     }
 }
