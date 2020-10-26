@@ -6,14 +6,9 @@ using UnityEngine.UI;
 public class Interactable : MonoBehaviour
 {
     protected bool isInsideZone = false;
-    protected GameObject MessageUI;
-    protected Text[] MessageText;
-
-    protected virtual void Start()
-    {
-        MessageUI = GameObject.Find("PickupUI").transform.GetChild(0).gameObject;
-        MessageText = MessageUI.GetComponentsInChildren<Text>();
-    }
+    public GameObject MessageUI;
+    public Text[] MessageText;
+    public Image icon;
     
     public virtual void Interact()
     {
