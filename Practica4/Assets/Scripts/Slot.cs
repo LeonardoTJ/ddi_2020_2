@@ -27,6 +27,11 @@ public class Slot : MonoBehaviour
     public void SetItem(Item item)
     {
         this.item = item;
+        if(item == null)
+        {
+            Debug.LogWarning("Image null");
+            return;
+        }
         image.sprite = item.icon;
         image.enabled = true;
     }

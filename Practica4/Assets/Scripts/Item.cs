@@ -12,7 +12,8 @@ public enum ItemType
     DetectBullet,
     KnockbackBullet,
     LinkBullet,
-    FirstAid
+    FirstAid,
+    EnergyItem
 }
 
 [CreateAssetMenu(fileName = "New item", menuName= "Inventory/Generic Item")]

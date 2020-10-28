@@ -7,8 +7,6 @@ public class Inventory : MonoBehaviour
     public delegate void OnChange();
     public OnChange onChange;
     public int space = 9;
-    public int health = 2;
-    public int energy = 1;
     public List<Item> items = new List<Item>();
 
     public bool isFull()
@@ -20,7 +18,7 @@ public class Inventory : MonoBehaviour
     {
         if(!isFull())
         {
-            item.Use();
+            //item.Use();
             items.Add(item);
             if(onChange != null)
             {

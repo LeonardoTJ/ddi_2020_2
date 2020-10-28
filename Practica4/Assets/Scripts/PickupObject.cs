@@ -9,7 +9,6 @@ public class PickupObject : Interactable
 
     public override void Interact()
     {
-        base.Interact();
         Debug.Log("Pickup object");
         if(inventory.Add(item))
         {

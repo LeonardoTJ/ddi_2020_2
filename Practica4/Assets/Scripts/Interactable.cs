@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
     public GameObject MessageUI;
     public Text[] MessageText;
     public Image icon;
-    
+
     public virtual void Interact()
     {
         
