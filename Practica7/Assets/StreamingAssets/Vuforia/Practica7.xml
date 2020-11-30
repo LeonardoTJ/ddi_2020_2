@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="swordsm" size="1.000000 0.909548" />
+    <ImageTarget name="orc" size="1.000000 0.897756" />
+    <ImageTarget name="knight" size="1.000000 0.902500" />
     <ImageTarget name="monokuma" size="1.000000 1.000000" />
   </Tracking>
 </QCARConfig>

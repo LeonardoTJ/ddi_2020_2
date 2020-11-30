@@ -8,9 +8,13 @@ public class MainUI : MonoBehaviour
     private bool battleMode;
     public GameObject UIObject;
     public Text enemyHealth;
-    public Entity enemy;
+    // public List<Entity> enemies;
+    private Entity currentEnemy;
     public Text playerHealth;
     public Entity player;
+
+    public Image weaponIcon;
+    public Text weaponName;
     
     // Start is called before the first frame update
     void Start()
@@ -30,21 +34,26 @@ public class MainUI : MonoBehaviour
         return battleMode;
     }
 
-    public void StartBattleMode()
+    public void StartBattleMode(Entity enemy)
     {
+        currentEnemy = enemy;
+        weaponIcon.sprite = enemy.weaponIcon;
+        weaponName.text = enemy.weaponName;
         battleMode = true;
         UIObject.SetActive(true);
     }
     
     public void EndBattleMode()
     {
+        currentEnemy = null;
         battleMode = false;
         UIObject.SetActive(false);
     }
 
     public void UpdateEnemyHealth()
     {
-        enemyHealth.text = enemy.GetHealth().ToString() + " HP";
+        if(currentEnemy != null)
+            enemyHealth.text = currentEnemy.GetHealth().ToString() + " HP";
     }
     
     public void UpdatePlayerHealth()

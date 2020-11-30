@@ -12,7 +12,7 @@ public class ARInteraction : MonoBehaviour
         Debug.Log("Interact");
         if(!mainUI.IsInBattle())
         {
-            mainUI.StartBattleMode();
+            mainUI.StartBattleMode(enemy);
         }
         else
         {
