@@ -224,10 +224,7 @@ namespace IBM.Watsson.Examples
                             }
                             if (alt.transcript.Contains("fight"))
                             {
-                                if(gameState.AttackRound())
-                                {
-                                    Debug.Log(ui.DisableUI());
-                                }
+                                gameState.AttackRound();
                             }
                             if (alt.transcript.Contains("shift"))
                             {

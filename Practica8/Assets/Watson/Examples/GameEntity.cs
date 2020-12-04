@@ -6,6 +6,7 @@ public class GameEntity : MonoBehaviour
 {
     public Pokemon player;
     public Pokemon enemy;
+    private string dialogText;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,6 @@ public class GameEntity : MonoBehaviour
     public int GetMaxPlayerHealth()
     {
         return player.GetMaxHealth();
-    
     }
     
     public int GetEnemyHealth()
@@ -33,14 +33,23 @@ public class GameEntity : MonoBehaviour
         return enemy.GetMaxHealth();
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetDialogText()
     {
-        
+        return dialogText;
     }
 
-    public bool AttackRound()
+    public void AttackRound()
     {
-        return (enemy.ReceiveDamage() || player.ReceiveDamage());
+        dialogText = enemy.name + " receives damage!";
+        if(enemy.ReceiveDamage())
+        {
+            dialogText = "Enemy " + enemy.name + " fainted!";
+        }
+        
+        dialogText = player.name + " receives damage!";
+        if(player.ReceiveDamage())
+        {
+            dialogText = "Enemy " + player.name + " fainted!";
+        }
     }
 }

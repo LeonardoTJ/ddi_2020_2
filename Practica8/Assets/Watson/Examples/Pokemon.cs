@@ -5,8 +5,9 @@ using UnityEngine;
 public class Pokemon : MonoBehaviour
 {
     public int maxHealth;
+    public string name;
+    public int def;
     private int currentHealth;
-    // Start is called before the first frame update
 
     void Start()
     {
@@ -27,11 +28,5 @@ public class Pokemon : MonoBehaviour
     {
         currentHealth -= 1;
         return (currentHealth < 1);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
