@@ -20,15 +20,16 @@ public class VoiceInteractable : MonoBehaviour
 
         switch (action)
         {
-            case "fights": game.AttackRound();
+            case "fight": game.AttackRound();
                             break;
-            case "shift":  Debug.Log("Cambiando pokemon");
+            case "switch":  Debug.Log("Cambiando pokemon");
                             game.SwitchPokemon();
                             break;
             case "bag":    Debug.Log("Usando item");
                             game.UseItem();
                             break;
             case "run":    Debug.Log("Escapando");
+                            game.Run();
                             break;
         }
     }

@@ -10,11 +10,17 @@ public class GameEntity : MonoBehaviour
     public Pokemon enemy;
     private string dialogText;
     public MainUI ui;
+    public Stack<Item> items;
 
     void Awake()
     {
         gameInstance = this;
         ui = MainUI.Instance;
+        items = new Stack<Item>();
+        for(int i = 0; i<5; i++)
+        {
+            items.Push(new Potion());
+        }
     }
 
     static public GameEntity Instance{
@@ -76,7 +82,17 @@ public class GameEntity : MonoBehaviour
 
     public void UseItem()
     {
-        
+        if(items.Count > 0)
+            player.Heal(items.Pop().Use());
+        else
+            Debug.Log("No hay items");
+
+        dialogText = player.name + " heals!";
+    }
+
+    public void Run()
+    {
+        ui.DisableUI();
     }
 
 }

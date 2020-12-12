@@ -24,6 +24,14 @@ public class Pokemon : MonoBehaviour
         return maxHealth;
     }
 
+    public void Heal(int amount)
+    {
+        Debug.Log("Heal amount:" + amount);
+        currentHealth += amount;
+        if(currentHealth > maxHealth)
+            currentHealth = maxHealth;
+    }
+
     public bool ReceiveDamage()
     {
         currentHealth -= 10;

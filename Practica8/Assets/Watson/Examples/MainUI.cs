@@ -37,14 +37,16 @@ public class MainUI : MonoBehaviour
         dialogPanelText.text = gameState.GetDialogText();
     }
 
-    public string EnableUI()
+    public void EnableUI()
     {
-        return "UI Enabled";
+        GameObject.Find("MainUI").SetActive(true);
+    
     }
     
-    public string DisableUI()
+    public void DisableUI()
     {
-        return "UI Disabled";
+        GameObject.Find("MainUI").SetActive(false);
+    
     }
     
     public void RemoveEnemy()
@@ -63,8 +65,15 @@ public class MainUI : MonoBehaviour
         GameObject temp = playerPokemonStatus;
         playerPokemonStatus = reservePokemonStatus;
         reservePokemonStatus = temp;
-        playerPokemon.SetActive(false);
-        reservePokemon.SetActive(true);
+        
+        temp = playerPokemon;
+        playerPokemon = reservePokemon;
+        reservePokemon = temp;
+
+        playerPokemon.SetActive(true);
+        reservePokemon.SetActive(false);
+        
+        playerPokemonStatus.SetActive(true);
+        reservePokemonStatus.SetActive(false);
     }
-    
 }
