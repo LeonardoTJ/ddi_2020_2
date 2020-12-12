@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class GameEntity : MonoBehaviour
 {
+    static protected GameEntity gameInstance;
     public Pokemon player;
+    public Pokemon reserve;
     public Pokemon enemy;
     private string dialogText;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public MainUI ui;
 
+    void Awake()
+    {
+        gameInstance = this;
+        ui = MainUI.Instance;
+    }
+
+    static public GameEntity Instance{
+        get{
+            return gameInstance;
+        }
     }
 
     public int GetPlayerHealth()
@@ -44,12 +54,29 @@ public class GameEntity : MonoBehaviour
         if(enemy.ReceiveDamage())
         {
             dialogText = "Enemy " + enemy.name + " fainted!";
+            ui.RemoveEnemy();
         }
         
         dialogText = player.name + " receives damage!";
         if(player.ReceiveDamage())
         {
-            dialogText = "Enemy " + player.name + " fainted!";
+            dialogText = "Player " + player.name + " fainted!";
+            ui.RemovePlayer();
         }
     }
+
+    public void SwitchPokemon()
+    {
+        Pokemon temp;
+        temp = player;
+        player = reserve;
+        reserve = temp;
+        ui.SwitchPokemonUI();
+    }
+
+    public void UseItem()
+    {
+        
+    }
+
 }

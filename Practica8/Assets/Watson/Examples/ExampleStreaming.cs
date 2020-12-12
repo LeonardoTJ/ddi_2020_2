@@ -59,13 +59,13 @@ namespace IBM.Watsson.Examples
 
         private SpeechToTextService _service;
 
-        public GameEntity gameState;
-        public MainUI ui;
+        public VoiceCommandProcessor commandProcessor;
 
         void Start()
         {
             LogSystem.InstallDefaultReactors();
             Runnable.Run(CreateService());
+            commandProcessor = VoiceCommandProcessor.Instance;
         }
 
         private IEnumerator CreateService()
@@ -213,9 +213,12 @@ namespace IBM.Watsson.Examples
                     foreach (var alt in res.alternatives)
                     {
                         string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
-                        // Log.Debug("ExampleStreaming.OnRecognize()", text);
+                        Log.Debug("ExampleStreaming.OnRecognize()", text);
 
                         ResultsField.text = text;
+                        if(res.final)
+                            commandProcessor.Create(alt.transcript);
+                        /*
                         if(res.final)
                         {
                             if (alt.transcript.Contains("start"))
@@ -238,7 +241,7 @@ namespace IBM.Watsson.Examples
                             {
                                 Debug.Log("Run");
                             }
-                        }
+                        }*/
 
                     }
 
@@ -246,7 +249,7 @@ namespace IBM.Watsson.Examples
                     {
                         foreach (var keyword in res.keywords_result.keyword)
                         {
-                            Log.Debug("ExampleStreaming.OnRecognize()", "keyword: {0}, confidence: {1}, start time: {2}, end time: {3}", keyword.normalized_text, keyword.confidence, keyword.start_time, keyword.end_time);
+                            // Log.Debug("ExampleStreaming.OnRecognize()", "keyword: {0}, confidence: {1}, start time: {2}, end time: {3}", keyword.normalized_text, keyword.confidence, keyword.start_time, keyword.end_time);
                         }
                     }
 
@@ -254,9 +257,9 @@ namespace IBM.Watsson.Examples
                     {
                         foreach (var wordAlternative in res.word_alternatives)
                         {
-                            Log.Debug("ExampleStreaming.OnRecognize()", "Word alternatives found. Start time: {0} | EndTime: {1}", wordAlternative.start_time, wordAlternative.end_time);
-                            foreach (var alternative in wordAlternative.alternatives)
-                                Log.Debug("ExampleStreaming.OnRecognize()", "\t word: {0} | confidence: {1}", alternative.word, alternative.confidence);
+                            // Log.Debug("ExampleStreaming.OnRecognize()", "Word alternatives found. Start time: {0} | EndTime: {1}", wordAlternative.start_time, wordAlternative.end_time);
+                            // foreach (var alternative in wordAlternative.alternatives)
+                            //     Log.Debug("ExampleStreaming.OnRecognize()", "\t word: {0} | confidence: {1}", alternative.word, alternative.confidence);
                         }
                     }
                 }

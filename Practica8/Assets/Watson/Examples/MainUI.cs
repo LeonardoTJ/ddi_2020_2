@@ -5,12 +5,31 @@ using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
+    static protected MainUI uiInstance;
     public Text playerHealth;
     public Text enemyHealth;
     public Text dialogPanelText;
+    
+    public GameObject playerPokemon;
+    public GameObject playerPokemonStatus;
+    public GameObject enemyPokemon;
+    public GameObject enemyPokemonStatus;
+    public GameObject reservePokemon;
+    public GameObject reservePokemonStatus;
+    
     public GameEntity gameState;
 
-    // Update is called once per frame
+    void Awake()
+    {
+        uiInstance = this;
+    }
+
+    static public MainUI Instance{
+        get{
+            return uiInstance;
+        }
+    }
+
     void Update()
     {
         playerHealth.text = gameState.GetPlayerHealth().ToString() + "/" + gameState.GetMaxPlayerHealth().ToString();
@@ -27,4 +46,25 @@ public class MainUI : MonoBehaviour
     {
         return "UI Disabled";
     }
+    
+    public void RemoveEnemy()
+    {
+        enemyPokemon.SetActive(false);
+        enemyPokemonStatus.SetActive(false);
+    }
+    
+    public void RemovePlayer()
+    {
+        playerPokemonStatus.SetActive(false);
+    }
+
+    public void SwitchPokemonUI()
+    {
+        GameObject temp = playerPokemonStatus;
+        playerPokemonStatus = reservePokemonStatus;
+        reservePokemonStatus = temp;
+        playerPokemon.SetActive(false);
+        reservePokemon.SetActive(true);
+    }
+    
 }

@@ -26,7 +26,7 @@ public class Pokemon : MonoBehaviour
 
     public bool ReceiveDamage()
     {
-        currentHealth -= 1;
+        currentHealth -= 10;
         return (currentHealth < 1);
     }
 }
