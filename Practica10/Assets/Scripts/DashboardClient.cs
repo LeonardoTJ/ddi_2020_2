@@ -11,16 +11,27 @@ using System;
 
 public class DashboardClient : MonoBehaviour {
 	public string brokerIpAddress = "localhost";
-	public int brokerPort = 1883;
-	public string temperatureTopic = "casa/sala/temperatura";
-	public string lightTopic = "casa/sala/luz";
+	public int brokerPort = 1884;
+	
+	public string alleyLightTopic = "casa/pasillo/movimiento";
+	public string backyardLightTopic = "casa/patio/movimiento";
+	public string entranceLightTopic = "casa/entrada/movimiento";
 
 	private MqttClient client;
-	public Text displayText;
-	public GameObject directionalLight;
+	public Text displayTextEntrance;
+	public Text displayTextBackyard;
+	public Text displayTextAlley;
+
+	public GameObject alleyLight;
+	public GameObject backyardLight;
+	public GameObject entranceLight;
+
 	string lastMessage;
-	string temperature = "0";
-	volatile bool lightState = false;
+	string lightState = "off";
+
+	volatile bool alleyLightState = false;
+	volatile bool backyardLightState = false;
+	volatile bool entranceLightState = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -35,44 +46,43 @@ public class DashboardClient : MonoBehaviour {
 		client.Connect(clientId); 
 		
 		// subscribe to the topic "/home/temperature" with QoS 2 
-		client.Subscribe(new string[] { temperatureTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-		client.Subscribe(new string[] { lightTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });  
-
+		client.Subscribe(new string[] { alleyLightTopic },    new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+		client.Subscribe(new string[] { backyardLightTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+		client.Subscribe(new string[] { entranceLightTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+		
 	}
+
 	void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e) 
 	{ 
 		Debug.Log("Received: " + System.Text.Encoding.UTF8.GetString(e.Message)  );
 		lastMessage = System.Text.Encoding.UTF8.GetString(e.Message);
-		if(e.Topic.Equals(lightTopic))
+
+		if(e.Topic.Equals(entranceLightTopic))
 		{
-			if(lastMessage.Equals("lightOn"))
-			{
-				lightState = true;
-			}
-			else if(lastMessage.Equals("lightOff"))
-			{
-				lightState = false;
-			}
+			entranceLightState = lastMessage.Equals("on");
 		}
-		if(e.Topic.Equals(temperatureTopic))
+		else if(e.Topic.Equals(backyardLightTopic))
 		{
-			temperature = lastMessage;
+			backyardLightState = lastMessage.Equals("on");
+		}
+		else if(e.Topic.Equals(alleyLightTopic))
+		{
+			alleyLightState = lastMessage.Equals("on");
 		}
 	}
 
 	void Update()
 	{
-		displayText.text = temperature;
-		if (lightState != directionalLight.activeSelf)
-			directionalLight.SetActive(lightState);
-	}
+		displayTextAlley.text    = (alleyLightState)    ? "on" : "off";
+		displayTextBackyard.text = (backyardLightState) ? "on" : "off";
+		displayTextEntrance.text = (entranceLightState) ? "on" : "off";
 
-	void OnGUI(){
-		if ( GUI.Button (new Rect (20,40,80,20), "Level 1")) {
-			Debug.Log("sending...");
-			client.Publish("casa/sala/luz", System.Text.Encoding.UTF8.GetBytes("lightOn"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-			Debug.Log("sent");
-		}
+		if (alleyLightState != alleyLight.activeSelf)
+			alleyLight.SetActive(alleyLightState);
+		if (backyardLightState != backyardLight.activeSelf)
+			backyardLight.SetActive(backyardLightState);
+		if (entranceLightState != entranceLight.activeSelf)
+			entranceLight.SetActive(entranceLightState);
 	}
 
 	void OnApplicationQuit()

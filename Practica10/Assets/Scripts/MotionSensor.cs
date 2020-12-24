@@ -31,7 +31,7 @@ public class MotionSensor : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             client.Publish(motionTopic,
-                           System.Text.Encoding.UTF8.GetBytes("enter"), 
+                           System.Text.Encoding.UTF8.GetBytes("on"), 
                            MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, 
                            true);
         }
@@ -43,7 +43,7 @@ public class MotionSensor : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             client.Publish(motionTopic,
-                           System.Text.Encoding.UTF8.GetBytes("exit"), 
+                           System.Text.Encoding.UTF8.GetBytes("off"), 
                            MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, 
                            true);
         }
