@@ -11,18 +11,18 @@ public class VoiceInteractable : MonoBehaviour
 
     void Start()
     {
-        commandProcessor = VoiceCommandProcessor.Instance;
-        commandProcessor.onVoiceCommand += VoiceInteract;
+        // commandProcessor = VoiceCommandProcessor.Instance;
+        // commandProcessor.onVoiceCommand += VoiceInteract;
     }
 
     void OnEnable()
     {
-        commandProcessor.SetActions(Book.LINKS[book_id].Keys);
+        // commandProcessor.SetActions(Book.LINKS[book_id].Keys);
     }
     
     void OnDisable()
     {
-        commandProcessor.SetActions(null);
+        // commandProcessor.SetActions(null);
     }
 
     public virtual void VoiceInteract(string command)

@@ -16,12 +16,12 @@ public class Book : MonoBehaviour
                                                  "C/C++"};
     public static readonly Dictionary<string, string> JAVA_MAP = new Dictionary<string, string>
     {
-        {"introduccion", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch01"},
+        {"introducción", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch01"},
         {"entrada salida y operadores", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch02"},
-        {"clases objetos metodos y cadenas", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch03"},
-        {"operadores de asignacion", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch04"},
-        {"operadores logicos", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch05"},
-        {"metodos", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch06"},
+        {"clases objetos métodos y cadenas", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch03"},
+        {"operadores de asignación", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch04"},
+        {"operadores lógicos", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch05"},
+        {"métodos", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch06"},
         {"arreglos", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch07"},
         {"clases y objetos", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch08"},
         {"herencia", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch09"},
@@ -30,9 +30,9 @@ public class Book : MonoBehaviour
     };
     public static readonly Dictionary<string, string> C_MAP = new Dictionary<string, string>
     {
-        {"introduccion a la computacion", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch01"},
-        {"introduccion a la programacion", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch02"},
-        {"programacion estructurada", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch03"},
+        {"introducción a la computación", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch01"},
+        {"introducción a la programación", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch02"},
+        {"programación estructurada", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch03"},
         {"control de programa", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch04"},
         {"funciones", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch05"},
         {"arreglos", "https://github.com/pdeitel/CHowtoProgram9e/tree/master/examples/ch06"},
