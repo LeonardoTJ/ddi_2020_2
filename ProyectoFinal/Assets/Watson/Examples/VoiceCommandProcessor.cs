@@ -22,7 +22,16 @@ public class VoiceCommandProcessor : MonoBehaviour
 
     public void SetActions(Dictionary<string, string>.KeyCollection actions)
     {
-        this.actions = actions;
+        if(actions != null)
+        {
+            this.actions = actions;
+        }
+        else
+        {
+            this.actions = null;
+            uiText.text = null;
+        }
+
     }
 
     public string[] GetActions()
@@ -39,6 +48,11 @@ public class VoiceCommandProcessor : MonoBehaviour
     public void SetCurrentBookId(int id)
     {
         currentBookId = id;
+    }
+    
+    public int GetCurrentBookId()
+    {
+        return currentBookId;
     }
     
     static public VoiceCommandProcessor Instance{
@@ -64,7 +78,7 @@ public class VoiceCommandProcessor : MonoBehaviour
                         string chapNum = url.Substring(url.Length-2, 2);
                         string chapTitle = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(transcript);
                         uiText.text = "Reconocido: " + Book.TITLES[currentBookId] + "\nCapítulo " + Int32.Parse(chapNum) + ": " + chapTitle;
-                        Application.OpenURL(url);
+                        // Application.OpenURL(url);
                     }
                     return;
                 }

@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Book : MonoBehaviour
+public class Book
 {
     public static readonly int JAVA_DEITEL = 0;
     public static readonly int C_DEITEL = 1;
