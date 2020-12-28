@@ -47,7 +47,16 @@ public class VoiceCommandProcessor : MonoBehaviour
 
     public void SetCurrentBookId(int id)
     {
-        currentBookId = id;
+        if(id >= 0)
+        {
+            currentBookId = id;
+            SetActions(Library.BOOKS[currentBookId].GetLinks().Keys);
+        }
+        else
+        {
+            currentBookId = -1;
+            SetActions(null);
+        }
     }
     
     public int GetCurrentBookId()
@@ -72,11 +81,12 @@ public class VoiceCommandProcessor : MonoBehaviour
                 if(action.Equals(transcript))
                 {
                     string url = "";
-                    if (Book.LINKS[currentBookId].TryGetValue(transcript, out url))
+                    Book currentBook = Library.BOOKS[currentBookId];
+                    if (currentBook.GetLinks().TryGetValue(transcript, out url))
                     {
                         string chapNum = url.Substring(url.Length-2, 2);
                         string chapTitle = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(transcript);
-                        uiText.text = "Reconocido: " + Book.TITLES[currentBookId] + "\nCapítulo " + Int32.Parse(chapNum) + ": " + chapTitle;
+                        uiText.text = "Reconocido: " + currentBook.GetTitle() + "\nCapítulo " + Int32.Parse(chapNum) + ": " + chapTitle;
                         Application.OpenURL(url);
                     }
                     return;

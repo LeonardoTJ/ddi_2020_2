@@ -88,7 +88,6 @@ public class TargetStateMonitor : MonoBehaviour, ITrackableEventHandler
                 component.enabled = true;
         }
         commandProcessor.SetCurrentBookId(book_id);
-        commandProcessor.SetActions(Book.LINKS[book_id].Keys);
         controller.SetupList(book_id);
         string actions = "Cambiando acciones a:\n";
         foreach(var a in commandProcessor.GetActions())
@@ -118,7 +117,7 @@ public class TargetStateMonitor : MonoBehaviour, ITrackableEventHandler
             foreach (var component in canvasComponents)
                 component.enabled = false;
         }
-        commandProcessor.SetActions(null);
+        commandProcessor.SetCurrentBookId(-1);
         Debug.Log("Cambiando acciones a null");
         controller.ResetList();
     }

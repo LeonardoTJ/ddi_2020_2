@@ -50,7 +50,6 @@ namespace IBM.Watsson.Examples
         private string _recognizeModel;
         #endregion
 
-
         private int _recordingRoutine = 0;
         private string _microphoneID = null;
         private AudioClip _recording = null;

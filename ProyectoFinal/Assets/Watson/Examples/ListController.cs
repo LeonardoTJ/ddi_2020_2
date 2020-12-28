@@ -13,19 +13,19 @@ public class ListController : MonoBehaviour
     {
         GameObject newListItem = Instantiate(ListItemPrefab) as GameObject;
         ListItemController controller = newListItem.GetComponent<ListItemController>();
-        controller.uiText.text = Book.TITLES[bookId] + ", " + Book.AUTHORS[bookId] + "\n";
+        controller.uiText.text = Library.BOOKS[bookId].GetTitle() + ", " + Library.BOOKS[bookId].GetAuthor() + "\n";
 
         newListItem.transform.parent = ContentPanel.transform;
         newListItem.transform.localScale = Vector3.one;
         
         newListItem = Instantiate(ListItemPrefab) as GameObject;
         controller = newListItem.GetComponent<ListItemController>();
-        controller.uiText.text = Book.DATES[bookId] + ", " + Book.LANGUAGES[bookId];
+        controller.uiText.text = Library.BOOKS[bookId].GetDate() + ", " + Library.BOOKS[bookId].GetLanguage();
 
         newListItem.transform.parent = ContentPanel.transform;
         newListItem.transform.localScale = Vector3.one;
 
-        foreach(KeyValuePair<string, string> kvp in Book.LINKS[bookId]){
+        foreach(KeyValuePair<string, string> kvp in Library.BOOKS[bookId].GetLinks()){
             string chapNum = kvp.Value.Substring(kvp.Value.Length-2, 2);
             string chapTitle = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(kvp.Key);
 
