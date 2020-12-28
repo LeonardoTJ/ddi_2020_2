@@ -32,6 +32,7 @@ public class ListController : MonoBehaviour
             newListItem = Instantiate(ListItemPrefab) as GameObject;
             controller = newListItem.GetComponent<ListItemController>();
             controller.uiText.text = "Capítulo " + Int32.Parse(chapNum) + ": " + chapTitle;
+            controller.url = kvp.Value;
 
             newListItem.transform.parent = ContentPanel.transform;
             newListItem.transform.localScale = Vector3.one;
@@ -40,13 +41,10 @@ public class ListController : MonoBehaviour
 
     public void ResetList()
     {
-        Debug.Log(transform.GetChild(0).childCount);
         if(transform.GetChild(0).childCount <= 1)
             return;
 
         int i = 0;
-
-        //Array to hold all child obj
         GameObject[] allChildren = new GameObject[transform.GetChild(0).childCount];
 
         
@@ -56,12 +54,9 @@ public class ListController : MonoBehaviour
             i += 1;
         }
 
-        //Now destroy them
         foreach (GameObject child in allChildren)
         {
             DestroyImmediate(child.gameObject);
         }
-
-        Debug.Log(transform.GetChild(0).childCount);
     }
 }

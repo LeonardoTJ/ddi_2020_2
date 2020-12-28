@@ -5,6 +5,7 @@ public class Book
 {
     public static readonly int JAVA_DEITEL = 0;
     public static readonly int C_DEITEL = 1;
+
     public static readonly string[] TITLES = {"Cómo programar en Java",
                                               "Cómo programar en C/C++"};
     public static readonly string[] AUTHORS = {"H.M. Deitel, P.J. Deitel",
@@ -13,6 +14,7 @@ public class Book
                                              "1994"};
     public static readonly string[] LANGUAGES = {"Java",
                                                  "C/C++"};
+                                                 
     public static readonly Dictionary<string, string> JAVA_MAP = new Dictionary<string, string>
     {
         {"introducción", "https://github.com/pdeitel/Java9ForProgrammers/tree/master/examples/ch01"},

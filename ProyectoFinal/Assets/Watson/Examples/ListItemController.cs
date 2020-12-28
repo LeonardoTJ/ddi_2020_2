@@ -6,15 +6,13 @@ using UnityEngine.UI;
 public class ListItemController : MonoBehaviour
 {
     public Text uiText;
-    // Start is called before the first frame update
-    void Start()
+    public string url;
+    
+    public void OnChapterClick()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(url != null)
+        {
+            Application.OpenURL(url);
+        }
     }
 }

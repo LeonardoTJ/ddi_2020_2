@@ -71,14 +71,13 @@ public class VoiceCommandProcessor : MonoBehaviour
             {
                 if(action.Equals(transcript))
                 {
-                    Debug.Log("<<<<Reconocido>>>> Transcription: " + transcript + "\nAction: " + action);
                     string url = "";
                     if (Book.LINKS[currentBookId].TryGetValue(transcript, out url))
                     {
                         string chapNum = url.Substring(url.Length-2, 2);
                         string chapTitle = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(transcript);
                         uiText.text = "Reconocido: " + Book.TITLES[currentBookId] + "\nCapítulo " + Int32.Parse(chapNum) + ": " + chapTitle;
-                        // Application.OpenURL(url);
+                        Application.OpenURL(url);
                     }
                     return;
                 }
